@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
+import com.example.Bestshift.EndeFahrt.Endanzeige;
 import com.example.Bestshift.MyActivity;
 import com.example.Bestshift.R;
 
@@ -31,7 +32,8 @@ public class Stop extends Activity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(getApplicationContext(), Endanzeige.class);
+                startActivity(intent);
             }
         });
     }
