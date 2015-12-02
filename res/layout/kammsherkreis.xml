@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/vonkammzukomm" android:background="#fffefd">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Kammsher-Kreis"
+            android:id="@+id/textkammsherkreis" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" android:textColor="#575757" android:textSize="30dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Click to go back"
+            android:id="@+id/textView4" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" android:textSize="30dp" android:textColor="#474747"/>
+</RelativeLayout>
