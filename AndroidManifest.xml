@@ -19,5 +19,6 @@
         </activity>
         <activity android:name=".Kommfort.KammsherKreis"/>
         <activity android:name=".Kommfort.Beschleunigung"/>
+        <activity android:name=".Stop.Stop"/>
     </application>
 </manifest>
