@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.Window;
 import android.widget.RelativeLayout;
 import com.example.Bestshift.EndeFahrt.Endanzeige;
 import com.example.Bestshift.MyActivity;
@@ -17,6 +18,8 @@ public class Stop extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Titel bar ausblenden
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.stop);
         RelativeLayout weiter = (RelativeLayout) findViewById(R.id.weiterausfuehren);
         RelativeLayout stop = (RelativeLayout) findViewById(R.id.stoppen);

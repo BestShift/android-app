@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
+                android:theme="@android:style/Theme.NoTitleBar"
                 android:layout_height="match_parent">
 <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,10 +10,9 @@
         android:layout_alignParentBottom="true" android:layout_alignParentRight="true">
 </android.support.v4.view.ViewPager>
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/stop"
-            android:background="@drawable/stop1"
-            android:layout_alignParentBottom="true" android:layout_alignParentRight="true"/>
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/stop" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"
+            android:background="@drawable/stop1"/>
 
 </RelativeLayout>

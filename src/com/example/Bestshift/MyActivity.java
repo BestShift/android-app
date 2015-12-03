@@ -11,8 +11,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
-import com.example.Bestshift.R;
 import com.example.Bestshift.Stop.Stop;
+import android.view.Window;
 
 
 public class MyActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -33,13 +33,15 @@ public class MyActivity extends FragmentActivity implements ActionBar.TabListene
         actionbar=getActionBar();
         viewpager.setAdapter(ft);
         // setzen der Navigation für die Tabs
+        actionbar.setDisplayShowTitleEnabled(false);
+        actionbar.setDisplayShowHomeEnabled(false);
         actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Background von tasks wird verändert
         actionbar.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#47708D")));
 
         //Für die Farbe ober dem Tabs
-       //actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FF1C1AE2")));
+       //actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#47708D")));
 
 
         // Tabs werden hinzugefügt
