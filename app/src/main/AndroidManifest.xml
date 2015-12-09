@@ -4,9 +4,6 @@
     <application>
     <activity android:name=".StartframeActivity">
         android:screenOrientation="portrait">
-        <intent-filter>
-            <action android:name="android.intent.action.main"/>
-        </intent-filter>
     </activity>
     <activity android:name=".MyActivity"
         android:screenOrientation="portrait"
