@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bestshift_as">
 
-    <application>
+    <application
+        android:label="Bestshift">
     <activity android:name=".StartframeActivity"
         android:screenOrientation="portrait">
     </activity>
