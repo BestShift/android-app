@@ -2,7 +2,7 @@
     package="com.example.bestshift_as">
 
     <application>
-    <activity android:name=".StartframeActivity">
+    <activity android:name=".StartframeActivity"
         android:screenOrientation="portrait">
     </activity>
     <activity android:name=".MyActivity"
