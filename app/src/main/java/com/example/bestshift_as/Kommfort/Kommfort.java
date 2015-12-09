@@ -38,7 +38,7 @@ public class Kommfort extends Fragment {
         zubesh.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(getActivity(), Beschleunigung.class);
+                Intent myIntent = new Intent(getActivity(), Beschleunigungskraefte.class);
                 getActivity().startActivityForResult(myIntent,100);
             }
         });
