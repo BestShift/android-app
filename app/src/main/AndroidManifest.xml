@@ -21,6 +21,7 @@
         android:screenOrientation="portrait"/>
     <activity android:name=".Kommfort.Beschleunigungskraefte"></activity>
 
+
     </application>
 
 </manifest>
