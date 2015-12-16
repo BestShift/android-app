@@ -15,7 +15,7 @@ import com.example.bestshift_as.R;
  * Created by Fitim on 02.12.2015.
  */
 public class Endanzeige extends Activity {
-    public static TextView text;
+    public TextView text;
     /**
      * Called when the activity is first created.
      */
@@ -27,10 +27,9 @@ public class Endanzeige extends Activity {
         setContentView(R.layout.endederfahrt);
 
         text =(TextView)findViewById(R.id.kommfortendetext);
-        Button stopb= (Button) findViewById(R.id.stop);
         Berechnenkomfort b= new Berechnenkomfort();
-        boolean a=b.getSchalter();
-        if (a== true){
+        boolean var =b.getSchalter();
+        if (var == true){
             text.setText("Hallo");
         }
 
