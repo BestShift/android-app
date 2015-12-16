@@ -15,11 +15,11 @@
         </intent-filter>
     </activity>
     <activity android:name=".Kommfort.KammsherKreis"/>
-    <activity android:name=".Kommfort.Beschleunigung"/>
-    <activity android:name=".Stop.Stop"
+        <activity android:name=".Stop.Stop"
         android:screenOrientation="portrait"/>
     <activity android:name=".EndeFahrt.Endanzeige"
         android:screenOrientation="portrait"/>
+    <activity android:name=".Kommfort.Beschleunigungskraefte"></activity>
 
     </application>
 
