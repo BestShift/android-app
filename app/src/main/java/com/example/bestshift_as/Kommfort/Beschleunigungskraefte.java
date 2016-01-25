@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bestshift_as.MyActivity;
 import com.example.bestshift_as.R;
@@ -16,160 +21,248 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 /**
  * Created by fitim on 09.12.2015.
  */
-public class Beschleunigungskraefte extends Activity {
+public class Beschleunigungskraefte extends Activity implements OnChartValueSelectedListener {
     private LineChart mlayout;
-    private LineChart mChart;
+    private LineChart mLineChart;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Titel bar ausblenden
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.beschl);
-        mlayout = (LineChart) findViewById(R.id.chart1);
-        // Create line chart
-        mChart = new LineChart(this);
-        //add to main Layout
-        mlayout.addView(mChart);
+        mLineChart = (LineChart) findViewById(R.id.chart1);
+        mLineChart.setOnChartValueSelectedListener(this);
 
-        // costumize line chart
-        mChart.setDescription("Beschleunigungskraefte");
+        // no description text
+        mLineChart.setDescription("Beschleunigungskraefte");
+        mLineChart.setNoDataTextDescription("You need to provide data for the chart.");
 
-        mChart.setNoDataText("Keine Daten bro :(");
+        // enable highlighting
+        mLineChart.setHighlightEnabled(true);
 
-        // enable Value highlighting
-        mChart.setHighlightEnabled(true);
-        // Enable touch feauters
-        mChart.setTouchEnabled(true);
+        // enable touch gestures
+        mLineChart.setTouchEnabled(true);
 
-        // we want also enable and dragging
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(true);
-        mChart.setDrawGridBackground(false);
+        // enable scaling and dragging
+        mLineChart.setDragEnabled(true);
+        mLineChart.setScaleEnabled(true);
+        mLineChart.setDrawGridBackground(false);
 
-        // enable pinch zoom to avoid scaling x and y axis separat
-        mChart.setPinchZoom(true);
+        // if disabled, scaling can be done on x- and y-axis separately
+        mLineChart.setPinchZoom(true);
 
-        //alternative Background
-        mChart.setBackgroundColor(Color.LTGRAY);
+        // set an alternative background color
+        mLineChart.setBackgroundColor(Color.WHITE);
 
-        // now we work on data
         LineData data = new LineData();
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
+        LineData data2 = new LineData();
+        data2.setValueTextColor(Color.RED);
 
-        // add data to line chart
-        mChart.setData(data);
+        // add empty data
+        mLineChart.setData(data);
+        mLineChart.setData(data2);
 
-        // get legend objecz
-        Legend l = mChart.getLegend();
 
-        // costumize legend
+
+        // get the legend (only possible after setting data)
+        Legend l = mLineChart.getLegend();
+
+        // modify the legend ...
+        // l.setPosition(LegendPosition.LEFT_OF_CHART);
         l.setForm(Legend.LegendForm.LINE);
-        l.setTextColor(Color.WHITE);
 
-        XAxis x1 = mChart.getXAxis();
-        x1.setTextColor(Color.WHITE);
-        x1.setDrawGridLines(false);
-        x1.setAvoidFirstLastClipping(true);
+        l.setTextColor(Color.BLACK);
 
-        YAxis y1 = mChart.getAxisLeft();
-        y1.setTextColor(Color.WHITE);
-        y1.setAxisMaxValue(120f);
-        y1.setDrawGridLines(true);
+        XAxis xl = mLineChart.getXAxis();
 
-        YAxis y12 = mChart.getAxisRight();
-        y12.setEnabled(false);
+        xl.setTextColor(Color.BLACK);
+        xl.setDrawGridLines(false);
+        xl.setAvoidFirstLastClipping(true);
 
 
+        YAxis leftAxis = mLineChart.getAxisLeft();
 
-        RelativeLayout vonbeshzumain = (RelativeLayout) findViewById(R.id.vonbeshzumenu);
-        vonbeshzumain.setOnClickListener(new View.OnClickListener() {
+        leftAxis.setTextColor(Color.BLACK);
+        leftAxis.setAxisMaxValue(2f);
+        leftAxis.setAxisMinValue(0f);
+        leftAxis.setStartAtZero(false);
+        leftAxis.setDrawGridLines(true);
+
+        YAxis rightAxis = mLineChart.getAxisRight();
+        rightAxis.setEnabled(false);
+        TextView rl= (TextView) findViewById(R.id.frombeschtokommtext);
+        rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyActivity.class);
+                Intent intent=new Intent(getApplicationContext(), MyActivity.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    private void addEntry2() {
+
+        LineData data2=mLineChart.getData();
+        if(data2!=null){
+            LineDataSet set2= data2.getDataSetByIndex(0);
+            if(set2 == null){
+                set2=createSet2();
+                data2.addDataSet(set2);
+
+            }
+            //add a new random value
+            data2.addXValue("" + set2.getEntryCount());
+            data2.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set2.getEntryCount()), 0);
+
+            mLineChart.notifyDataSetChanged();
+
+            mLineChart.setVisibleXRange(6,0);
+
+            mLineChart.moveViewToX(data2.getXValCount() -7);
+        }
+
 
     }
 
+    private void addEntry() {
+        LineData data=mLineChart.getData();
+        LineData data2=mLineChart.getData();
+        if(data != null){
 
+            LineDataSet set2= data2.getDataSetByIndex(0);
+            LineDataSet set= data.getDataSetByIndex(0);
+                if(set2 == null){
+                    set2=createSet2();
+                    data2.addDataSet(set2);
 
+                }
+                //add a new random value
+                data2.addXValue("" + set2.getEntryCount());
+                data2.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set2.getEntryCount()), 0);
 
+                if(set == null){
+
+                    set=createSet();
+                    data.addDataSet(set);
+                 }
+                //add a new random value
+                data.addXValue("" + set.getEntryCount());
+                data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+
+                 mLineChart.notifyDataSetChanged();
+
+                mLineChart.setVisibleXRange(6,0);
+
+                mLineChart.moveViewToX(data.getXValCount() -7);
+        }
+    }
+
+    private LineDataSet createSet2() {
+
+        LineDataSet set2 = new LineDataSet(null, "Realtime Beschleunigungskraefte");
+
+        set2.setDrawCubic(true);
+        set2.setCubicIntensity(0.2f);
+        set2.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set2.setColor(Color.BLUE);
+        set2.setCircleColor(Color.RED);
+        set2.setLineWidth(2f);
+        set2.setCircleSize(4f);
+        set2.setFillAlpha(65);
+        set2.setFillColor(ColorTemplate.getHoloBlue());
+        set2.setHighLightColor(Color.rgb(244, 117, 117));
+        set2.setValueTextColor(Color.BLACK);
+        set2.setValueTextSize(10f);
+        return set2;
+    }
+    private LineDataSet createSet() {
+
+        LineDataSet set = new LineDataSet(null, "Realtime Beschleunigungskraefte1");
+        set.setDrawCubic(true);
+        set.setCubicIntensity(0.2f);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setColor(ColorTemplate.getHoloBlue());
+        set.setCircleColor(Color.BLACK);
+        set.setLineWidth(2f);
+        set.setCircleSize(4f);
+        set.setFillAlpha(65);
+        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setHighLightColor(Color.rgb(244, 117, 117));
+        set.setValueTextColor(Color.BLACK);
+        set.setValueTextSize(10f);
+        return set;
+    }
     @Override
-    protected void onResume() {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_realtime_line, menu);
+        return true;
+    }
+    @Override
+    protected  void onResume() {
         super.onResume();
-        // now we are going to simulate real time data addition
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 // add 100 entries
-                for(int i=0; i<100; i++){
+                for(int i=0; i<10; i++) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            addEntry();//mchart is modified of update in addEntry method
+                            addEntry();
+
                         }
                     });
-                    // pause between adds
                     try {
-                        Thread.sleep(600);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        });
+        }).start();
     }
 
-    // we need to create method to add entry to the line Chart
-    private void addEntry(){
-        LineData data=mChart.getData();
-        if(data != null){
-            LineDataSet set = data.getDataSetByIndex(0);
-            if(set == null){
-                //creation if null
-                set=createSet();
-                data.addDataSet(set);
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.actionAdd: {
+                addEntry();
+                break;
             }
-            // add a new random value
-            data.addXValue("");
-            data.addEntry(new Entry((float)(Math.random() *75) +60f,set.getEntryCount()), 0);
-            // enble the way chart know when its data has changed
-            mChart.notifyDataSetChanged();
-
-            //limit number of visible entries
-            mChart.setVisibleXRange(6,00);
-
-            //scroll to the last entry
-            mChart.moveViewToX(data.getXValCount() - 7);
-
-
+            case R.id.actionClear: {
+                mLineChart.clearValues();
+                Toast.makeText(this, "Chart cleared!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.actionFeedMultiple: {
+                onResume();
+                break;
+            }
         }
-    }
-    // Methode to create set
-    private LineDataSet createSet(){
-        LineDataSet set=new LineDataSet(null, "SPL Db");
-        set.setDrawCubic(true);
-        set.setCubicIntensity(0.2f);
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set.setColor(ColorTemplate.getHoloBlue());
-        set.setCircleColor(ColorTemplate.getHoloBlue());
-        set.setLineWidth(2f);
-        set.setCircleSize(4f);
-        set.setFillAlpha(65);
-        set.setFillColor(ColorTemplate.getHoloBlue());
-        set.setHighLightColor(Color.rgb(244, 117, 177));
-        set.setValueTextColor(Color.WHITE);
-        set.setValueTextSize(10f);
-        return set;
+        return true;
     }
 
+    @Override
+    public void onValueSelected(Entry e, int i, Highlight highlight) {
+        Log.i("Entry selected", e.toString());
+    }
+
+    @Override
+    public void onNothingSelected() {
+        Log.i("Nothing selected", "Nothing selected.");
+    }
 
 }

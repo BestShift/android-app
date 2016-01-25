@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/color1" name="text">#528B8B</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/color1" name="black">#000</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/color1" name="white">#FFF</color>
+    
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/cold3" name="cold3">#0000FF</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/cold2" name="cold2">#2E9AFE</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/cold1" name="cold1">#A9E2F3</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/hot1" name="hot1">#FF0000</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/hot2" name="hot2">#FF8000</color>
+    <color android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/hot3" name="hot3">#FAAC58</color>
+    
 </resources>
