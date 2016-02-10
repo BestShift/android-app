@@ -1,14 +1,15 @@
 package com.example.bestshift_as.Kommfort;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 public class Beschleunigungskraefte extends Activity implements OnChartValueSelectedListener {
     private LineChart mlayout;
     private LineChart mLineChart;
-
+    private MediaPlayer mpAudio;
+    private MediaPlayer mpAudio2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
         // add empty data
         mLineChart.setData(data);
         mLineChart.setData(data2);
+
 
 
 
@@ -120,7 +123,8 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
             }
             //add a new random value
             data2.addXValue("" + set2.getEntryCount());
-            data2.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set2.getEntryCount()), 0);
+            float a=(float) Math.random() * 2 + 0.1f;
+            data2.addEntry(new Entry(a, set2.getEntryCount()), 0);
 
             mLineChart.notifyDataSetChanged();
 
@@ -132,38 +136,55 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
 
     }
 
+
     private void addEntry() {
         LineData data=mLineChart.getData();
-        LineData data2=mLineChart.getData();
         if(data != null){
 
-            LineDataSet set2= data2.getDataSetByIndex(0);
+
             LineDataSet set= data.getDataSetByIndex(0);
-                if(set2 == null){
-                    set2=createSet2();
-                    data2.addDataSet(set2);
+            if(set == null){
 
-                }
-                //add a new random value
-                data2.addXValue("" + set2.getEntryCount());
-                data2.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set2.getEntryCount()), 0);
+                set=createSet();
+                data.addDataSet(set);
+            }
+            //add a new random value
+            data.addXValue("" + set.getEntryCount());
+            float a=(float) Math.random() * 2 + 0.1f;
+            if(a>1.8){
+                feedback1();
+                mpAudio.start();
+            }
+            data.addEntry(new Entry(a, set.getEntryCount()), 0);
 
-                if(set == null){
+            mLineChart.notifyDataSetChanged();
 
-                    set=createSet();
-                    data.addDataSet(set);
-                 }
-                //add a new random value
-                data.addXValue("" + set.getEntryCount());
-                data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+            mLineChart.setVisibleXRange(6,0);
 
-                 mLineChart.notifyDataSetChanged();
-
-                mLineChart.setVisibleXRange(6,0);
-
-                mLineChart.moveViewToX(data.getXValCount() -7);
+            mLineChart.moveViewToX(data.getXValCount() -7);
         }
     }
+    private void feedback1(){
+        Context context = getApplicationContext();
+        CharSequence text = "Langsamer gehts auch";
+        int duration=Toast.LENGTH_SHORT;
+
+        Toast toast=Toast.makeText(context, text, duration);
+        toast.show();
+        mpAudio=MediaPlayer.create(this, R.raw.sound);
+
+
+    }
+    private void feedback2(){
+        Context context = getApplicationContext();
+        CharSequence text = "Langsamer!!";
+        int duration=Toast.LENGTH_SHORT;
+
+        Toast toast=Toast.makeText(context, text, duration);
+        toast.show();
+        mpAudio2=MediaPlayer.create(this, R.raw.sound);
+    }
+
 
     private LineDataSet createSet2() {
 
