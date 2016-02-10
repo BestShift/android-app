@@ -16,9 +16,18 @@ import com.example.bestshift_as.R;
  */
 public class Endanzeige extends Activity {
     public TextView text;
+    Berechnenkomfort b;
+    boolean var;
+    int count;
     /**
      * Called when the activity is first created.
      */
+
+    public Endanzeige(){
+        b= new Berechnenkomfort();
+        var=b.getSchalter();
+        count=b.getkommfortcount();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +38,19 @@ public class Endanzeige extends Activity {
         text =(TextView)findViewById(R.id.kommfortendetext);
         Berechnenkomfort b= new Berechnenkomfort();
         boolean var =b.getSchalter();
+
         if (var == true){
-            text.setText("Hallo");
+
+            if(count>10 && count<=16){
+                text.setText("Du bist sehr gut gefahren. Du bist ein sehr vorbildlicher Fahrer");
+            }
+            if(count>=17 && count<=21){
+                text.setText("Du hast hin und wieder zu viel Beschleunigt und oder zu schnell die Kurve genommen.");
+
+            }
+            if(count>=22 && count<28){
+                text.setText("Du könntest dich wirklich verbessern würdest du auf die App hören, deine Fahrt war den Beifahrern nicht seh angenehm");
+            }
         }
 
     }
