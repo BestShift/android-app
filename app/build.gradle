@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.bestshift_as"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -19,9 +19,16 @@ android {
     }
 }
 
+//Needed for Shift
+repositories {
+    maven { url 'https://dl.bintray.com/sule/maven/' }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
     compile files('mpandroidchartlibrary-2-1-4.jar')
+    testCompile 'junit:junit:4.12'
+    //compile 'io.sule:gaugelibrary:1.0.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile project(':gaugelibrary')
 }
