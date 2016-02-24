@@ -141,19 +141,19 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
         lradar.setXEntrySpace(7f);
         lradar.setYEntrySpace(7f);
 
-       // TextView zukamm=(TextView) rootView.findViewById(R.id.zukammsherkreis);
+        TextView zukamm=(TextView) rootView.findViewById(R.id.zukamm);
         TextView zubesh=(TextView) rootView.findViewById(R.id.zubeschleunigungskraefte);
 
         //Layout button=(Layout) rootView.findViewById(R.id.);
 
-/*        zukamm.setOnClickListener(new OnClickListener() {
+        zukamm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), KammsherKreis.class);
                 Kommfort.this.startActivity(intent);
             }
         });
-        */
+
         zubesh.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

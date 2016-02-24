@@ -15,7 +15,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Zukamm"
+            android:id="@+id/zukamm"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -30,16 +42,6 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignBottom="@+id/zubeschleunigungskraefte" />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="to Beschleunigungskraefte"
-                android:id="@+id/zubeschleunigungskraefte"
-            android:textColor="#2549ff" android:textSize="25dp" android:textIsSelectable="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -65,5 +67,15 @@
         android:layout_below="@+id/zubesh"
         android:layout_toRightOf="@+id/main_txt_currenttemp"
         android:layout_toEndOf="@+id/main_txt_currenttemp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="to Beschleunigungskraefte"
+            android:id="@+id/zubeschleunigungskraefte"
+        android:textColor="#2549ff" android:textSize="25dp" android:textIsSelectable="true"
+        android:layout_below="@+id/zubesh"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

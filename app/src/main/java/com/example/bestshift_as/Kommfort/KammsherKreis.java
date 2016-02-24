@@ -27,6 +27,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -96,10 +97,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
     private void addEntry() {
         float mult = 2;
         int cnt = 4;
-
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
         ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-        ArrayList<Entry> yVals3 = new ArrayList<Entry>();
 
         RadarData data = mChart.getData();
         if (data != null) {
@@ -107,12 +105,26 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
             if (set == null) {
                 set = createSet();
                 data.addDataSet(set);
+                for(int i=0; i<10; i++) {
+                    for (int j = 0; j < cnt; j++) {
+                        data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+                    }
+                    mChart.notifyDataSetChanged();
+                    mChart.invalidate();
+                    mChart.setSkipWebLineCount(5);
 
-                for (int i = 0; i < cnt; i++) {
-                    yVals2.add(new Entry((float)(Math.random()*2)+0.1f, set.getEntryCount(), 0));
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-                mChart.notifyDataSetChanged();
-                mChart.invalidate();
+
+
+
+
+
+
 
 
 
@@ -189,7 +201,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
                         }
                     });
                     try {
-                        Thread.sleep(400);
+                        Thread.sleep(700);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -209,14 +221,15 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
         set1.setLineWidth(2f);
 
         RadarDataSet set2 = new RadarDataSet(null, "Daten");
-        set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        set1.setDrawFilled(true);
-        set1.setLineWidth(2f);
+        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
+        set2.setDrawFilled(false);
+        set2.setLineWidth(2f);
 
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++) {
             xVals.add(mParties[i % mParties.length]);
+        }
 
         ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
         sets.add(set1);
