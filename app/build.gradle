@@ -31,4 +31,6 @@ dependencies {
     //compile 'io.sule:gaugelibrary:1.0.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile project(':gaugelibrary')
+    compile files('aredis-1.4.jar')
+    compile files('commons-logging-1.2.jar')
 }

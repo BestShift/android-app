@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.bestshift_as.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -30,6 +31,7 @@ public class Verbrauch extends Fragment {
     View rootView;
     private RelativeLayout linechartlayout;
     private LineChart mchart;
+    private LineData data;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.verbrauch, container, false);
@@ -70,6 +72,7 @@ public class Verbrauch extends Fragment {
 
         Legend l = mchart.getLegend();
 
+
         //customizing legend
         l.setForm(Legend.LegendForm.LINE);
         l.setTextColor(Color.BLACK);
@@ -85,15 +88,23 @@ public class Verbrauch extends Fragment {
         YAxis y1 = mchart.getAxisLeft();
         y1.setTextColor(Color.BLACK);
         y1.setDrawGridLines(true);
-        y1.setAxisMaxValue(12f);
+        y1.setAxisMaxValue(170f);
 
         YAxis y2 = mchart.getAxisRight();
         y2.setEnabled(false);
 
+        //limitline
+        LimitLine ll = new LimitLine(119f, "Preferred Maximum CO2 Emission");
+        ll.setLineColor(Color.RED);
+        ll.setLineWidth(3f);
+        ll.setTextColor(Color.BLACK);
+        ll.setTextSize(10f);
+
+        y1.addLimitLine(ll);
         return rootView;
     }
     private void addEntry() {
-        LineData data=mchart.getData();
+        data=mchart.getData();
         if(data != null){
             LineDataSet set= data.getDataSetByIndex(0);
             if(set == null){
@@ -102,7 +113,8 @@ public class Verbrauch extends Fragment {
             }
             //add a new random value
             data.addXValue("");
-            data.addEntry(new Entry((float)(Math.random()*2)+7f,set.getEntryCount()), 0);
+            int range = (130 - 60) + 1;
+            data.addEntry(new Entry((float)(Math.random()*range)+60f,set.getEntryCount()), 0);
 
             mchart.notifyDataSetChanged();
 
