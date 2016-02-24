@@ -331,7 +331,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
                         }
                     });
                     try {
-                        Thread.sleep(400);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

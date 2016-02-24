@@ -105,20 +105,13 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
             if (set == null) {
                 set = createSet();
                 data.addDataSet(set);
-                for(int i=0; i<10; i++) {
+
                     for (int j = 0; j < cnt; j++) {
                         data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
                     }
                     mChart.notifyDataSetChanged();
                     mChart.invalidate();
                     mChart.setSkipWebLineCount(5);
-
-                    try {
-                        Thread.sleep(600);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
 
 
 
@@ -132,59 +125,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
             }
         }
     }
-    /**
-     public void setData() {
 
-     float mult = 2;
-     int cnt = 4;
-     String[] yVals = new String[]{
-     "yVals1", "yVals2"
-     };
-     ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-     ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-     ArrayList<Entry> yVals3 = new ArrayList<Entry>();
-
-     // IMPORTANT: In a PieChart, no values (Entry) should have the same
-     // xIndex (even if from different DataSets), since no values can be
-     // drawn above each other.
-
-     for (int i = 0; i < cnt; i++) {
-     yVals1.add(new Entry((float) (0.8), i));
-     }
-
-     for (int i = 0; i < cnt; i++) {
-     yVals2.add(new Entry((float) (2.0), i));
-     }
-
-     ArrayList<String> xVals = new ArrayList<String>();
-
-     for (int i = 0; i < cnt; i++)
-     xVals.add(mParties[i % mParties.length]);
-
-     RadarDataSet set1 = new RadarDataSet(yVals1, "Wohlfuehl bereich");
-     set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-     set1.setDrawFilled(true);
-     set1.setLineWidth(2f);
-
-     RadarDataSet set2 = new RadarDataSet(yVals2, "Set 2");
-     set2.setColor(ColorTemplate.COLOR_NONE);
-     set2.setDrawFilled(true);
-     set2.setLineWidth(2f);
-
-     ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
-     sets.add(set1);
-     sets.add(set2);
-
-     RadarData data = new RadarData(xVals, sets);
-     data.setValueTypeface(tf);
-     data.setValueTextSize(10f);
-     data.setDrawValues(false);
-
-     mChart.setData(data);
-
-     mChart.invalidate();
-     }
-     **/
     @Override
     protected void onResume(){
         super.onResume();

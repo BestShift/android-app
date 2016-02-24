@@ -151,7 +151,7 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
             //add a new random value
             data.addXValue("" + set.getEntryCount());
             float a=(float) Math.random() * 2 + 0.1f;
-            if(a>1.8){
+            if(a>1.7){
                 feedback1();
                 mpAudio.start();
             }
@@ -166,7 +166,7 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
     }
     private void feedback1(){
         Context context = getApplicationContext();
-        CharSequence text = "Langsamer gehts auch";
+        CharSequence text = "Langsam!!";
         int duration=Toast.LENGTH_SHORT;
 
         Toast toast=Toast.makeText(context, text, duration);
@@ -235,7 +235,7 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
             @Override
             public void run() {
                 // add 100 entries
-                for(int i=0; i<10; i++) {
+                for(int i=0; i<40; i++) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -244,7 +244,7 @@ public class Beschleunigungskraefte extends Activity implements OnChartValueSele
                         }
                     });
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
