@@ -105,12 +105,24 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
             if (set == null) {
                 set = createSet();
                 data.addDataSet(set);
+                for(int i=0; i<10; i++) {
+                    for (int j = 0; j < cnt; j++) {
+                        data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+                    }
+                    mChart.notifyDataSetChanged();
+                    mChart.invalidate();
+                    mChart.setSkipWebLineCount(5);
 
-                for (int j = 0; j < cnt; j++) {
-                    data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+                    try {
+                        Thread.sleep(600);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-                mChart.notifyDataSetChanged();
-                mChart.invalidate();
+
+
+
+
 
 
 
@@ -181,7 +193,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
             @Override
             public void run() {
                 // add 100 entries
-                for(int i=0; i<10; i++) {
+                for(int i=0; i<100; i++) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -189,7 +201,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
                         }
                     });
                     try {
-                        Thread.sleep(600);
+                        Thread.sleep(700);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
