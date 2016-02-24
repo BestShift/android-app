@@ -22,6 +22,17 @@ import io.sule.gaugelibrary.GaugeView;
  */
 public class Shift extends Fragment {
     private GaugeView mGaugeView;
+    private final int noChange=0;
+    private final int changeUp=1;
+    private final int changeDown=2;
+    private int maxRpm=6000;
+    /**
+     * TODO:mit mehrdimensionalen Arrays maximal und 90% Werte speichern
+     * bestenfalls nur eine Errechnung der Maximalwerte mit einem ungefähren Multiplikator,
+     * wonach dann die shiftValues mit *0.9 berechnet werden.
+    private int[][] shiftValues =
+    private int[][] maxValues=
+     */
     private final Random random = new Random(); // used to create the number shown in the Gauge
     // mTimer creates the Clicks on which the Gauge changes it's value
     private final CountDownTimer mTimer = new CountDownTimer(30000,1000) {
@@ -76,5 +87,39 @@ public class Shift extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public int calculateGear(int calculatedLoad, int rpm) {
+        //Calculation of Change Up
+        if(rpm >= getMaxRpm()*0.9){
+            return changeUp;
+        }else if(calculatedLoad >= 90){
+            return changeUp;
+        }
+
+        //Calculation of Change Down
+        if(rpm >=600 && rpm<=650 && calculatedLoad<=10) {
+            return changeDown;
+        }
+        if(rpm >650 && rpm <=700 && calculatedLoad<=25 && calculatedLoad>10){
+            return changeDown;
+        }
+        if (rpm >700 && rpm<=750 && calculatedLoad<=40 && calculatedLoad>25){
+            return changeDown;
+        }
+        if(rpm >750 && rpm<=800 && calculatedLoad<=55 && calculatedLoad>40){
+            return changeDown;
+        }
+
+        //Return if none of the upper cases turn out true
+        return noChange;
+    }
+
+    public int getMaxRpm() {
+        return maxRpm;
+    }
+
+    public void setMaxRpm(int maxRpm) {
+        this.maxRpm = maxRpm;
     }
 }
