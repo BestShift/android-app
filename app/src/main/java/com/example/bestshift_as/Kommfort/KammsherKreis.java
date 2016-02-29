@@ -36,6 +36,9 @@ import java.util.ArrayList;
 public class KammsherKreis extends Activity implements OnChartValueSelectedListener {
     private RadarChart mChart;
     private Typeface tf;
+    int cnt = 50;
+    private String[] mParties = new String[cnt];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,10 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
         yAxis.setLabelCount(5, false);
         yAxis.setAxisMaxValue(2f);
         yAxis.setTextSize(6f);
-        yAxis.setStartAtZero(true);
+        yAxis.setStartAtZero(false);
+        for(int i=0; i<cnt; i++){
+            mParties[i]="Eingabe" + i;
+        }
 
         Legend l = mChart.getLegend();
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
@@ -90,13 +96,9 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
         return true;
     }
 
-    private String[] mParties = new String[]{
-            "Bremsen", "Linkskurve", "Gas", "Rechtskurve"
-    };
-
     private void addEntry() {
         float mult = 2;
-        int cnt = 4;
+
         ArrayList<Entry> yVals2 = new ArrayList<Entry>();
 
         RadarData data = mChart.getData();
@@ -107,9 +109,9 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
                 data.addDataSet(set);
 
                     for (int j = 0; j < cnt; j++) {
-                        data.addEntry(new Entry((float) (Math.random() * 2) + 0.1f, set.getEntryCount()), 0);
+                        data.addEntry(new Entry((float) (Math.random() * 2) + 1f, set.getEntryCount()), 0);
                     }
-                    mChart.notifyDataSetChanged();
+                    //data.notifyDataChanged();
                     mChart.invalidate();
                     mChart.setSkipWebLineCount(5);
 
@@ -153,7 +155,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
 
     private RadarDataSet createSet() {
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < cnt; i++) {
             yVals1.add(new Entry((float) (0.8), i));
         }
         RadarDataSet set1 = new RadarDataSet(yVals1, "Wohlfuehl bereich");
@@ -168,7 +170,7 @@ public class KammsherKreis extends Activity implements OnChartValueSelectedListe
 
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < cnt; i++) {
             xVals.add(mParties[i % mParties.length]);
         }
 
