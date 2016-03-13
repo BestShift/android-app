@@ -51,6 +51,7 @@ public class MyActivity extends FragmentActivity implements ActionBar.TabListene
         actionbar.addTab(actionbar.newTab().setTabListener(this).setIcon(R.drawable.komfort), true);
         actionbar.addTab(actionbar.newTab().setTabListener(this).setIcon(R.drawable.schaltvorschlag));
 
+       /**
         Button stop= (Button) findViewById(R.id.stop);
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class MyActivity extends FragmentActivity implements ActionBar.TabListene
                 startActivity(intent);
             }
         });
-
+        **/
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {

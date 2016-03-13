@@ -18,7 +18,7 @@ public class RedisJDBC {
         // by configuring it as a Spring Bean or as a Singleton
         AsyncRedisFactory f = new AsyncRedisFactory(null);
         // The below call returns the same AsyncRedisClient for all calls to the same server
-        AsyncRedisClient aredis = f.getClient("localhost");
+        AsyncRedisClient aredis = f.getClient("192.168.43.19");
         // Use sendCommand instead of submitCommand when you are not interested in the Return value
         aredis.sendCommand(RedisCommand.SETEX, "hello", "300", "world");
         // You can also save Java Objects as values like in the below command. Whereas String values are

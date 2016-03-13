@@ -6,76 +6,59 @@
                 android:background="#fdfdff">
 
     <RelativeLayout
-
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_alignParentLeft="true" android:id="@+id/zukamsh">
-        <com.github.mikephil.charting.charts.RadarChart
-            android:id="@+id/radarchartkommfort"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/textView2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Zukamm"
-            android:id="@+id/zukamm"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
-
-    </RelativeLayout>
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp" android:layout_below="@+id/zukamsh"
-            android:id="@+id/zubesh"
+            android:layout_height="500dp"
+        android:id="@+id/zubesh"
             android:layout_alignParentLeft="true"
         android:layout_above="@+id/main_txt_currenttemp">
+
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechartkommfort"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_alignBottom="@+id/zubeschleunigungskraefte" />
+            android:layout_above="@+id/zukammscher" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/zukammscher"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zum Kreis"
+                android:id="@+id/butonzumkreis" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="to Beschleunigungskraefte"
+            android:id="@+id/zubeschleunigungskraefte"
+        android:textColor="#2549ff" android:textSize="25dp" android:textIsSelectable="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/zubesh" />
+
+    <TextView
         android:id="@+id/main_txt_currenttemp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:text="@null"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="45sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageView
-        android:id="@+id/img_currenttemp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="@null"
-        android:src="@null"
-        android:layout_alignBottom="@+id/main_txt_currenttemp"
-        android:layout_below="@+id/zubesh"
-        android:layout_toRightOf="@+id/main_txt_currenttemp"
-        android:layout_toEndOf="@+id/main_txt_currenttemp" />
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="to Beschleunigungskraefte"
-            android:id="@+id/zubeschleunigungskraefte"
-        android:textColor="#2549ff" android:textSize="25dp" android:textIsSelectable="true"
-        android:layout_below="@+id/zubesh"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_gravity="right" />
 
 </RelativeLayout>
