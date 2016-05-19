@@ -31,8 +31,19 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Copyright BestShift Inc. 2015"
+            android:text="Copyright BestShift Inc. 2016"
             android:id="@+id/textView" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
             android:layout_alignRight="@+id/imageView2" android:textColor="#000000"/>
-
+    <!--
+    <com.appyvet.rangebar.RangeBar
+        xmlns:custom="http://schemas.android.com/apk/lib/com.example.bestshift_as"
+        android:id="@+id/rangebar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        custom:tickStart="5"
+        custom:tickInterval="1"
+        custom:tickEnd="10"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+    -->
 </RelativeLayout>

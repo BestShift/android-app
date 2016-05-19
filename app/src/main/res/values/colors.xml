@@ -13,5 +13,6 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#323232</color>
     <color name="colorAccent">#ff0000</color>
+    <color name="lightgrey">#d3d3d3</color>
 
 </resources>
