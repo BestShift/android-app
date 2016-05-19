@@ -22,8 +22,6 @@ android {
 //Needed for Shift
 repositories {
     maven { url 'https://dl.bintray.com/sule/maven/' }
-    maven { url "https://jitpack.io" }
-    mavenCentral()
 }
 
 dependencies {
@@ -35,8 +33,4 @@ dependencies {
     compile project(':gaugelibrary')
     compile files('aredis-1.4.jar')
     compile files('commons-logging-1.2.jar')
-    //compile 'com.edmodo:rangebar:1.0.0'
-    //compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar' //used for view of shift image
-    compile 'de.hdodenhof:circleimageview:2.0.0' //secondary circular image library
-    //compile 'com.github.TR4Android:AppCompat-Extension-Library:v0.3.0'
 }
