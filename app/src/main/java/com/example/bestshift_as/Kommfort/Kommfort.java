@@ -27,6 +27,8 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.util.Random;
+
 /**
  * Created by Faiku Fitim on 23.11.2015.
  */
@@ -37,6 +39,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
     private RelativeLayout rlkamm;
     private LineChart mLineChart;
     private View rootView;
+    Random r= new Random();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -96,7 +99,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
 
         leftAxis.setTextColor(Color.BLACK);
         leftAxis.setAxisMaxValue(2f);
-        leftAxis.setAxisMinValue(0f);
+        leftAxis.setAxisMinValue(-2f);
         leftAxis.setStartAtZero(false);
         leftAxis.setDrawGridLines(true);
 
@@ -105,7 +108,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
 
 
         Button zukamm=(Button) rootView.findViewById(R.id.butonzumkreis);
-        TextView zubesh=(TextView) rootView.findViewById(R.id.zubeschleunigungskraefte);
+       // TextView zubesh=(TextView) rootView.findViewById(R.id.zubeschleunigungskraefte);
 
         //Layout button=(Layout) rootView.findViewById(R.id.);
 
@@ -117,6 +120,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
             }
         });
 
+        /**
         zubesh.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +128,7 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
                 getActivity().startActivityForResult(myIntent,100);
             }
         });
+         */
 
 
 
@@ -142,8 +147,10 @@ public class Kommfort extends Fragment implements OnChartValueSelectedListener {
                 data.addDataSet(set);
             }
             //add a new random value
+            float a=r.nextFloat()*(2.00f+2.00f)-2.0f;
+            System.out.println(a);
             data.addXValue("");
-            data.addEntry(new Entry((float)(Math.random()*2)+0.1f,set.getEntryCount()), 0);
+            data.addEntry(new Entry(a,set.getEntryCount()), 0);
 
             mLineChart.notifyDataSetChanged();
 
